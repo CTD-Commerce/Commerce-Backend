@@ -1,23 +1,36 @@
 package com.dh.CTDCommerce.persistance.model;
+import com.fasterxml.jackson.annotation.JsonIdentityInfo;
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+import com.fasterxml.jackson.annotation.ObjectIdGenerators;
 import javax.persistence.*;
 
-@Table @Entity
+@Entity @Table
+//@JsonIdentityInfo(generator = ObjectIdGenerators.PropertyGenerator.class, property = "id")
+//@JsonIgnoreProperties({"hibernateLazyInitializer", "handler"})
+@JsonIdentityInfo(generator = ObjectIdGenerators.PropertyGenerator.class, property = "id")
+
 public class Produtos {
     @Id
     @SequenceGenerator(name="produtos_sequencia", sequenceName = "produtos_sequencia", allocationSize = 1)
     @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "produtos_sequencia")
     private Integer id;
     private String nome;
-    private Double valor;
+    private Double preco;
     private String descricao;
     private String imagem;
+    @ManyToOne
+//    @JoinColumn(name = "categoriasId")
+    private Categorias categorias;
 
-    public Produtos(String nome, Double valor, String descricao, String imagem) {
+    public Produtos(String nome, Double preco, String descricao, String imagem, Categorias categorias) {
         this.nome = nome;
-        this.valor = valor;
+        this.preco = preco;
         this.descricao = descricao;
         this.imagem = imagem;
+        this.categorias = categorias;
     }
+
+    public Produtos() { }
 
     public Integer getId() {
         return id;
@@ -31,12 +44,12 @@ public class Produtos {
         this.nome = nome;
     }
 
-    public Double getValor() {
-        return valor;
+    public Double getPreco() {
+        return preco;
     }
 
-    public void setValor(Double valor) {
-        this.valor = valor;
+    public void setPreco(Double preco) {
+        this.preco = preco;
     }
 
     public String getDescricao() {
@@ -53,5 +66,13 @@ public class Produtos {
 
     public void setImagem(String imagem) {
         this.imagem = imagem;
+    }
+
+    public Categorias getCategorias() {
+        return categorias;
+    }
+
+    public void setCategorias(Categorias categorias) {
+        this.categorias = categorias;
     }
 }

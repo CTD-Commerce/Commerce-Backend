@@ -21,9 +21,9 @@ public class CategoriasService {
         PropertyConfigurator.configure("log4j.properties");
     }
 
-    public List<Categorias> selecionarCategorias(){
+    public List<String> selecionarCategorias(){
         try{
-            return categoriasRepository.findAll();
+            return categoriasRepository.nomesCategorias();
         }catch(Exception exc){
             logger.error("Erro ao selecionar todas as categorias.");
             return null;
@@ -37,5 +37,9 @@ public class CategoriasService {
             logger.error("Erro ao buscar a categoria pelo id " + id);
             return null;
         }
+    }
+
+    public Categorias inserirCat(Categorias cat){
+        return categoriasRepository.save(cat);
     }
 }
