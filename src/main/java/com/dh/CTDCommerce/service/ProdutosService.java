@@ -8,7 +8,6 @@ import org.apache.log4j.Logger;
 import org.apache.log4j.PropertyConfigurator;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-
 import java.util.ArrayList;
 import java.util.List;
 
@@ -78,7 +77,7 @@ public class ProdutosService {
             return null;
         }
     }
-// mostrar os produtos que tem o categoria_id
+
     public List<ProdutosDTO> selectCatProd(Integer id) {
         try{
             Categorias cat = categoriasRepository.getById(id);
