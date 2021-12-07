@@ -1,7 +1,12 @@
 package com.dh.CTDCommerce.persistance.model;
+import com.fasterxml.jackson.annotation.JsonIdentityInfo;
+import com.fasterxml.jackson.annotation.ObjectIdGenerators;
 import javax.persistence.*;
 
-@Table @Entity
+
+@Entity @Table
+@JsonIdentityInfo(generator = ObjectIdGenerators.PropertyGenerator.class, property = "id")
+
 public class Categorias {
 
     @Id
@@ -10,9 +15,7 @@ public class Categorias {
     private Integer id;
     private String nome;
 
-    public Categorias(String nome) {
-        this.nome = nome;
-    }
+    public Categorias(){}
 
     public Integer getId() {
         return id;
