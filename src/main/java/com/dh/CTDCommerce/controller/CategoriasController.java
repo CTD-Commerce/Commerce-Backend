@@ -14,7 +14,7 @@ public class CategoriasController {
     private CategoriasService categoriasService;
 
     @GetMapping
-    public ResponseEntity<List<String>> selecionarDentistas() {
+    public ResponseEntity<List<String>> selecionarCategorias() {
         return ResponseEntity.ok(categoriasService.selecionarCategorias());
     }
 
